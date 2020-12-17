@@ -16,10 +16,10 @@ B # Dla każdej nazwy zasobu wyświetlić średnią wagę, jeśli ilość jest r
 select  nazwa, avg(waga) as srednia_waga from zasob where ilosc>=4 group by nazwa having srednia_waga>10;
 
 # Wyświetlenie ilość nazw pogrupowane rodzajem 
-select count(nazwa) as iloscRoznychNazw, rodzaj from zasob group by rodzaj having sum(ilosc)>1;
+select count(nazwa) as iloscRoznychNazw, rodzaj from zasob group by rodzaj;
 
 C # Wyświetlić ile jest różnych nazw dla każdego rodzaju zasobu, jeśli minimalna liczba zasobu jest większa od 1.
-SELECT COUNT(nazwa) AS rozne_nazwy, rodzaj FROM zasob GROUP BY rodzaj HAVING MIN(ilosc)>1;
+select count(nazwa) as rozne_nazwy, rodzaj from zasob group by rodzaj having MIN(ilosc)>1;
 
 Zadanie 3 
 A # Wyświetlić dla każdej kreatury ilości zasobów jakie niesie
@@ -39,21 +39,20 @@ B # Wyświetlić nazwy 5 najmłodszych kreatur, które w ekwipunku posiadają je
 select k.nazwa, e.idZasobu, z.nazwa, k.dataUr from kreatura k  natural join ekwipunek e join zasob z on e.idZasobu=z.idZasobu where z.rodzaj='jedzenie' order by dataUr desc limit 5;
 
 C # Wypisz obok siebie nazwy kreatur, których numer idKreatury różni się o 5 (np. Bjorn - Astrid, Brutal - Ibra itd.)
-select concat(k.nazwa, '-', k2.nazwa) nazwy kreatur from kreatura k, kreatura k2 where k.idKreatury - k2.idKreatury=5;
+select concat(k.nazwa, '-', k2.nazwa) nazwy_kreatur from kreatura k, kreatura k2 where k.idKreatury - k2.idKreatury=5;
 
 Zadanie 5
 A # Dla każdego rodzaju kreatury wyświetlić średnią wagę zasobów, jaką posiadają w ekwipunku, jeśli kreatura nie jest małpą ani wężem i ilość ekwipunku jest poniżej 30.
-SELECT k.rodzaj, AVG(z.waga) AS srednia_waga_wikingow FROM kreatura k INNER JOIN ekwipunek e ON k.idKreatury=e.idKreatury INNER JOIN zasob z ON e.idZasobu=z.idZasobu GROUP BY k.rodzaj HAVING k.rodzaj!='malpa' AND k.rodzaj!='waz' AND SUM(z.ilosc)<30;
-
+select avg(z.waga * e.ilosc), k.rodzaj ,sum(e.ilosc) from kreatura k join ekwipunek e  on k.idKreatury=e.idKreatury join zasob z on e.idZasobu=z.idZasobu  group by k.rodzaj  having sum(e.ilosc)<30 and k.rodzaj!="małpa" and k.rodzaj!="wąż";
+                             
 B # Dla każdego rodzaju kreatury wyświetlić nazwę, datę urodzenia i rodzaj najmłodszej i najstarszej kreatury.
 select a.nazwa, a.rodzaj, a.dataUr from kreatura a, (SELECT min(dataUr) min, max(dataUr) max from kreatura group by rodzaj) b WHERE b.min = a.dataUr OR b.max=a.dataUr;
 
 # 2. opcja
-select 'najmlodsza',a.maxData, b.nazwa, a.rodzaj
-from (select max(dataUr) maxData, rodzaj from kreatura group by rodzaj) a,
-(select nazwa, dataUr from kreatura) b where a.maxData = b.dataUr
+select "najmłodsza", a.dataMax,  b.nazwa, a.rodzaj 
+from (select max(dataUr) dataMax, rodzaj from kreatura group by rodzaj) a,
+(select nazwa, dataUr from kreatura) b where a.dataMax = b.dataUr
 union
-select 'najstarsza',a.minData, b.nazwa, a.rodzaj
-from (select min(dataUr) minData, rodzaj from kreatura group by rodzaj) a,
-(select nazwa, dataUr from kreatura) b
-where a.minData = b.dataUr;
+select "najstarsza", a.dataMin, b.nazwa, a.rodzaj
+from (select min(dataUr) dataMin, rodzaj from kreatura group by rodzaj) a,
+(select nazwa, dataUr from kreatura) b where a.dataMin = b.dataUr
