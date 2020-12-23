@@ -33,17 +33,20 @@ select k.nazwa, k.idKreatury from kreatura k left join ekwipunek e on  k.idKreat
 
 Zadanie 4
 A # Wyświetlić nazwy wikingów, którzy urodzili się w latach 70-tych XVII wieku oraz nazwy zasobów, które posiadają (użyj natural joina jeśli się da).
-select kreatura.nazwa, zasob.nazwa from kreatura natural join ekwipunek inner join zasob on zasob.idZasobu = ekwipunek.idZasobu  where year(kreatura.dataUr) between 1670 and 1679 and kreatura.rodzaj='wiking';
+select kreatura.nazwa, zasob.nazwa from kreatura natural join ekwipunek inner join zasob on zasob.idZasobu = ekwipunek.idZasobu  
+where year(kreatura.dataUr) between 1670 and 1679 and kreatura.rodzaj='wiking';
 
 B # Wyświetlić nazwy 5 najmłodszych kreatur, które w ekwipunku posiadają jedzenie.
-select k.nazwa, e.idZasobu, z.nazwa, k.dataUr from kreatura k  natural join ekwipunek e join zasob z on e.idZasobu=z.idZasobu where z.rodzaj='jedzenie' order by dataUr desc limit 5;
+select k.nazwa, e.idZasobu, z.nazwa, k.dataUr from kreatura k  natural join ekwipunek e join zasob z on e.idZasobu=z.idZasobu 
+where z.rodzaj='jedzenie' order by dataUr desc limit 5;
 
 C # Wypisz obok siebie nazwy kreatur, których numer idKreatury różni się o 5 (np. Bjorn - Astrid, Brutal - Ibra itd.)
 select concat(k.nazwa, '-', k2.nazwa) nazwy_kreatur from kreatura k, kreatura k2 where k.idKreatury - k2.idKreatury=5;
 
 Zadanie 5
 A # Dla każdego rodzaju kreatury wyświetlić średnią wagę zasobów, jaką posiadają w ekwipunku, jeśli kreatura nie jest małpą ani wężem i ilość ekwipunku jest poniżej 30.
-select avg(z.waga * e.ilosc), k.rodzaj ,sum(e.ilosc) from kreatura k join ekwipunek e  on k.idKreatury=e.idKreatury join zasob z on e.idZasobu=z.idZasobu  group by k.rodzaj  having sum(e.ilosc)<30 and k.rodzaj!="małpa" and k.rodzaj!="wąż";
+select avg(z.waga * e.ilosc), k.rodzaj ,sum(e.ilosc) from kreatura k join ekwipunek e  on k.idKreatury=e.idKreatury join zasob z on e.idZasobu=z.idZasobu
+group by k.rodzaj  having sum(e.ilosc)<30 and k.rodzaj!="małpa" and k.rodzaj!="wąż";
                              
 B # Dla każdego rodzaju kreatury wyświetlić nazwę, datę urodzenia i rodzaj najmłodszej i najstarszej kreatury.
 select a.nazwa, a.rodzaj, a.dataUr from kreatura a, (SELECT min(dataUr) min, max(dataUr) max from kreatura group by rodzaj) b WHERE b.min = a.dataUr OR b.max=a.dataUr;
