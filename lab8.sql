@@ -6,16 +6,17 @@ CREATE TRIGGER kreatura_before_insert
 BEFORE INSERT ON kreatura
 FOR EACH ROW
 BEGIN
-	if NEW.waga< 0
-    then
-		set NEW.waga  = 0;
-	end if;
+if NEW.waga< 0
+THEN
+set NEW.waga  = 0;
+END IF;
 END
 //
 DELIMITER ;
 
 Zad2
-B #Stwórz tabelę archiwum_wypraw z polami id_wyprawy, nazwa, data_rozpoczecia, data_zakonczenia, kierownik (varchar), do której będą wstawiane rekordy po usunięciu z tabeli wyprawa. Do kolumny kierownik wstawiane jest nazwa kreatury na podstawie usuwanego id_kreatury.
+B #Stwórz tabelę archiwum_wypraw z polami id_wyprawy, nazwa, data_rozpoczecia, data_zakonczenia, kierownik (varchar),
+do której będą wstawiane rekordy po usunięciu z tabeli wyprawa. Do kolumny kierownik wstawiane jest nazwa kreatury na podstawie usuwanego id_kreatury.
 
 create table archiwum_wypraw(id_wyprawy int  primary key,nazwa varchar(30), data_rozpoczecia date,
 data_zakonczenia date, kierownik varchar(30));
@@ -59,7 +60,8 @@ A # Stwórz tabelę "system_alarmowy" z polami, id_alarmu, wiadomosc
 
 create table system_alarmowy(id_alarmu int primary key, wiadomosc varchar(255));
 
-B # Dodaj wyzwalacz, który będzie sprawdzał czy w tabeli wyprawy pojawiła się misja, w której bierze udział teściowa oraz czy jednym z sektorów misji jest domek dziadka. Jeżeli w/w zaistnieje wyzwalacz wstawi rekord do tabeli "system_alarmowy" z treścią "Teściowa nadchodzi !!!".
+B # Dodaj wyzwalacz, który będzie sprawdzał czy w tabeli wyprawy pojawiła się misja, w której bierze udział teściowa oraz czy jednym z sektorów misji jest domek dziadka.
+Jeżeli w/w zaistnieje wyzwalacz wstawi rekord do tabeli "system_alarmowy" z treścią "Teściowa nadchodzi !!!".
 
 DELIMITER $$
 
