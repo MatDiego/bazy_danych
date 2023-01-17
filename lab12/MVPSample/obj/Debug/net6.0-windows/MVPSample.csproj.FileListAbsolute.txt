@@ -1,0 +1,17 @@
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.csproj.AssemblyReference.cache
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.Form1.resources
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.csproj.GenerateResource.cache
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.GeneratedMSBuildEditorConfig.editorconfig
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.AssemblyInfoInputs.cache
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.AssemblyInfo.cs
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.csproj.CoreCompileInputs.cache
+D:\Microsoft\matna\source\repos\MVPSample\bin\Debug\net6.0-windows\MVPSample.exe
+D:\Microsoft\matna\source\repos\MVPSample\bin\Debug\net6.0-windows\MVPSample.deps.json
+D:\Microsoft\matna\source\repos\MVPSample\bin\Debug\net6.0-windows\MVPSample.runtimeconfig.json
+D:\Microsoft\matna\source\repos\MVPSample\bin\Debug\net6.0-windows\MVPSample.dll
+D:\Microsoft\matna\source\repos\MVPSample\bin\Debug\net6.0-windows\MVPSample.pdb
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.dll
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\refint\MVPSample.dll
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.pdb
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\MVPSample.genruntimeconfig.cache
+D:\Microsoft\matna\source\repos\MVPSample\obj\Debug\net6.0-windows\ref\MVPSample.dll
